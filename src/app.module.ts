@@ -3,10 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 
 import { OrderModule } from './core/order/order.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import {
-  environment,
-  getConfiguration,
-} from './application/configuration/configuration';
+import { getConfiguration } from './application/configuration/configuration';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -17,10 +15,11 @@ import {
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: environment.DATABASE_URI,
+        uri: getConfiguration().DATABASE_URI,
       }),
     }),
     OrderModule,
+    HealthModule,
   ],
   controllers: [],
   providers: [],
