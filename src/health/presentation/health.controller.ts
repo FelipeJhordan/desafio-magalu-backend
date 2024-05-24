@@ -8,7 +8,7 @@ import {
   MongooseHealthIndicator,
 } from '@nestjs/terminus';
 import { Connection } from 'mongoose';
-import { HEALTH_RESOURCE } from '../constants/health-resoruce.constants';
+import { HEALTH_RESOURCE } from '../constants/health-resource.constants';
 
 @Controller(HEALTH_RESOURCE)
 @ApiTags(HEALTH_RESOURCE)
