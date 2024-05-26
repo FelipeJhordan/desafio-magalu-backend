@@ -9,7 +9,7 @@ export class UserOrderMapper implements IMapper<OrderInput[], UserOrder[]> {
     const transformedData: UserOrder[] = Array.from(
       valueGroupedByOrder.values(),
     ).map((user) => ({
-      userId: user.userId,
+      user_id: user.user_id,
       name: user.name,
       orders: Array.from(user.order.values()),
     }));
@@ -19,37 +19,37 @@ export class UserOrderMapper implements IMapper<OrderInput[], UserOrder[]> {
 
   public groupDataByUserAndOrder(orderInput: OrderInput[]) {
     return orderInput.reduce((mapSet, current) => {
-      const { userId, name, orderId, productId, value, date } = current;
+      const { user_id, name, order_id, product_id, value, date } = current;
 
-      if (!mapSet.has(userId)) {
-        mapSet.set(userId, {
-          userId: userId,
+      if (!mapSet.has(user_id)) {
+        mapSet.set(user_id, {
+          user_id: user_id,
           name: name,
           order: new Map<number, Order>(),
         });
       }
 
-      const user = mapSet.get(userId)!;
+      const user = mapSet.get(user_id)!;
 
-      if (!user.order.has(orderId)) {
-        user.order.set(orderId, {
-          orderId,
+      if (!user.order.has(order_id)) {
+        user.order.set(order_id, {
+          order_id,
           date: date,
           total: 0,
           products: [],
         });
       }
 
-      const order = user.order.get(orderId)!;
+      const order = user.order.get(order_id)!;
 
       order.products.push({
-        productId,
+        product_id,
         value: value,
       });
 
       order.total += value;
 
       return mapSet;
-    }, new Map<number, { userId: number; name: string; order: Map<number, Order> }>());
+    }, new Map<number, { user_id: number; name: string; order: Map<number, Order> }>());
   }
 }
