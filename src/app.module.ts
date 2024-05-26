@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 
-import { OrderModule } from './core/order/order.module';
-import { MongooseModule } from '@nestjs/mongoose';
 import { getConfiguration } from './application/configuration/configuration';
+import { UserOrderModule } from './core/user-order/user-order.module';
+import { FileHashModule } from './file-hash/file-hash.module';
 import { HealthModule } from './health/health.module';
 
 @Module({
@@ -18,8 +19,9 @@ import { HealthModule } from './health/health.module';
         uri: getConfiguration().DATABASE_URI,
       }),
     }),
-    OrderModule,
+    UserOrderModule,
     HealthModule,
+    FileHashModule,
   ],
   controllers: [],
   providers: [],
