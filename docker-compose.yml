@@ -18,9 +18,5 @@ services:
     ports:
       - '27017:27017'
     command: mongod --quiet --logpath /dev/null 
-
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: 12345
 networks:
   api:
