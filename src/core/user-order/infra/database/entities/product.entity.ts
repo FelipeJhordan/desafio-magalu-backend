@@ -1,4 +1,12 @@
-import { Schema } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 
-@Schema()
-export class ProductEntity {}
+@Schema({
+  _id: false,
+})
+export class ProductEntity {
+  @Prop()
+  product_id: string;
+
+  @Prop()
+  value: number;
+}

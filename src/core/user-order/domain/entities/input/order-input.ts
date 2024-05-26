@@ -1,8 +1,8 @@
 export type OrderInput = {
-  userId: number;
+  user_id: number;
   name: string;
-  orderId: number;
-  productId: number;
+  order_id: number;
+  product_id: number;
   value: number;
   date: Date;
 };

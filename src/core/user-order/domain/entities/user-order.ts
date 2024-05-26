@@ -1,7 +1,7 @@
 import { Order } from './order';
 
 export class UserOrder {
-  userId: number;
+  user_id: number;
   name: string;
   orders: Order[];
 }

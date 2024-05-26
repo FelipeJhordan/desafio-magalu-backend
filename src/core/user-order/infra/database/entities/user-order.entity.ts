@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { OrderEntity } from './order.entity';
 
 @Schema({
@@ -8,7 +8,7 @@ export class UserOrderEntity {
   @Prop({
     unique: true,
   })
-  userId: string;
+  user_id: string;
   @Prop()
   name: string;
 
@@ -17,3 +17,5 @@ export class UserOrderEntity {
   })
   orders: OrderEntity[];
 }
+
+export const UserOrderSchema = SchemaFactory.createForClass(UserOrderEntity);

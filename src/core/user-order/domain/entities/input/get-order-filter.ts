@@ -1,5 +1,5 @@
 export type GetOrderFilter = {
-  orderId?: string;
-  startDate?: Date;
-  endDate?: Date;
+  order_id?: number;
+  start_date?: Date;
+  end_date?: Date;
 };

@@ -1,7 +1,7 @@
 import { Product } from './product';
 
 export class Order {
-  orderId: number;
+  order_id: number;
   total?: number;
   date: Date;
   products: Product[];
