@@ -22,12 +22,13 @@ export const processLinesByChunk = async <TypeResponse>(
 ): Promise<TypeResponse> => {
   const LINE_SIZE = 95;
   const chunk = [];
-  const index = 1;
+  let index = 0;
   const linesWithError = [];
 
   for await (const line of lines) {
+    index++;
     if (line.length !== LINE_SIZE) {
-      linesWithError.push({ line, lineSize: index });
+      linesWithError.push({ line, lineNumber: index });
       continue;
     }
     const order = Object.assign(

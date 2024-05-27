@@ -96,7 +96,7 @@ describe('Http exception filter', () => {
 
     it('Catch http SERVICE_ERROR exception', () => {
       service.catch(
-        new ServiceException('Service exception', ErrorType.DATABASE_ERROR),
+        new ServiceException('Service exception', ErrorType.BAD_REQUEST_ERROR),
         mockArgumentsHost,
       );
 
@@ -119,7 +119,7 @@ describe('Http exception filter', () => {
       expect(mockGetResponse).toHaveBeenCalledTimes(1);
       expect(mockGetResponse).toHaveBeenCalledWith();
       expect(mockStatus).toHaveBeenCalledTimes(1);
-      expect(mockStatus).toHaveBeenCalledWith(HttpStatus.INTERNAL_SERVER_ERROR);
+      expect(mockStatus).toHaveBeenCalledWith(HttpStatus.BAD_REQUEST);
       expect(mockJson).toHaveBeenCalledTimes(1);
       expect(mockJson).toHaveBeenCalledWith(expectedResponse);
     });
