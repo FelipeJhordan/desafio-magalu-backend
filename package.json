@@ -76,6 +76,8 @@
       "!**/*.constants.(t|j)s",
       "!**/*.dto.(t|j)s",
       "!**/*.entity.(t|j)s",
+      "!**/*.fixture.(t|j)s",
+      "!**/*.pipe.(t|j)s",
       "!**/entities/*.(t|j)s",
       "!**/main.(t|j)s",
       "!**/configuration.(t|j)s"
