@@ -1,9 +1,7 @@
 import {
   Controller,
-  FileTypeValidator,
   Get,
   Inject,
-  ParseFilePipe,
   Post,
   Query,
   UploadedFile,
@@ -22,10 +20,7 @@ import {
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 import { createInterface } from 'readline';
-import {
-  FILE_ALREADY_PROCESSED,
-  INVALID_FILE_FORMAT,
-} from 'src/application/constants/error-messages.constants';
+import { FILE_ALREADY_PROCESSED } from '../../../application/constants/error-messages.constants';
 import { Readable } from 'stream';
 import { getConfiguration } from '../../../application/configuration/configuration';
 import { ServiceException } from '../../../application/entities/service-exception';
@@ -43,6 +38,7 @@ import { GetUserOrderFilterDto } from './dtos/get-user-order-filter.dto';
 import { ProcessLinesWarningResponseDto } from './dtos/process-lines-warning-response.dto';
 import { SaveOrdersBulkyResponseDto } from './dtos/save-orders-bulky-response.dto';
 import { GetUserOrderResponseDto } from './dtos/get-user-order-response.dto';
+import { invalidExtensionPipe } from '../../../application/pipes/file-validator.pipe';
 
 @Controller(USER_ORDER_RESOURCE)
 @ApiTags(USER_ORDER_RESOURCE)
@@ -93,17 +89,7 @@ export class UserOrderController {
     description: 'The file has already been processed',
   })
   async saveOrdersBulky(
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: /text\/plain/ })],
-        exceptionFactory: () => {
-          throw new ServiceException(
-            INVALID_FILE_FORMAT,
-            ErrorType.UNPROCESSABLE_ENTITY,
-          );
-        },
-      }),
-    )
+    @UploadedFile(invalidExtensionPipe())
     file: Express.Multer.File,
   ): Promise<SaveOrdersBulkyResponseDto> {
     const { ALLOW_REPEAT_FILE_FLAG, MAX_CHUNK_SIZE } = getConfiguration();
