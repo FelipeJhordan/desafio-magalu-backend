@@ -1,49 +1,29 @@
-name: CI
+name: Continuous Integration Testing
 
 on:
   pull_request:
     branches:
-      - test-ci/cd
+      - "test-ci/cd"
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
+      - name: npm install
         run: npm ci
 
-      - name: Run unit tests
-        run: npm testname: CI
+      - name: build app
+        run: npm run build
 
-on:
-  pull_request:
-    branches:
-      - test-ci/cd
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run unit tests
+      - name: Run tests
         run: npm test
