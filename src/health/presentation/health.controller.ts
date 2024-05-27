@@ -22,11 +22,15 @@ export class HealthController {
   @Get()
   @HealthCheck()
   async check(): Promise<HealthCheckResult> {
-    return this.healthCheck.check([
+    return this.healthCheck.check(this.mongooseCheckCallback());
+  }
+
+  public mongooseCheckCallback() {
+    return [
       () =>
         this.mongooseHealth.pingCheck('mongoDB', {
           connection: this.connection,
         }),
-    ]);
+    ];
   }
 }
