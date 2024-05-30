@@ -11,6 +11,8 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   const logger = new Logger('Main');
 
   app.useGlobalFilters(new GeneralErrorFilter(logger));

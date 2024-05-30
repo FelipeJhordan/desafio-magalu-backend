@@ -82,6 +82,7 @@
       "!**/main.(t|j)s",
       "!**/configuration.(t|j)s"
     ],
+    "coverageReporters": ["json", "html"],
 
 
     "coverageDirectory": "../coverage",
