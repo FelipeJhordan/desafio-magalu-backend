@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "043285ca-5589-4143-b6f5-c054862c7a71",
+		"name": "Magalu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10812174"
+	},
+	"item": [
+		{
+			"name": "User Orders",
+			"item": [
+				{
+					"name": "Get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"User_id and name fields are present and not empty\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"  responseData.forEach(function(userOrder) {",
+									"    pm.expect(userOrder.user_id).to.exist.and.to.not.be.empty;",
+									"    pm.expect(userOrder.name).to.exist.and.to.not.be.empty;",
+									"  });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Orders array is present and contains expected number of elements\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    pm.expect(responseData).to.have.lengthOf.at.least(1, \"Orders array should not be empty\");",
+									"    responseData.forEach(function (user) {",
+									"        pm.expect(user.orders).to.exist.and.to.be.an('array');",
+									"        pm.expect(user.orders).to.have.lengthOf.at.least(1, \"Orders array should not be empty for each user\");",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate order properties\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"",
+									"  responseData.forEach(userOrder => {",
+									"    pm.expect(userOrder).to.have.property('user_id').that.is.a('string');",
+									"    pm.expect(userOrder).to.have.property('name').that.is.a('string');",
+									"    ",
+									"    userOrder.orders.forEach(order => {",
+									"      pm.expect(order).to.have.property('order_id').that.is.a('number').and.is.at.least(0);",
+									"      pm.expect(order).to.have.property('total').that.is.a('number').and.is.at.least(0);",
+									"      pm.expect(order).to.have.property('date').that.matches(/^\\d{4}-\\d{2}-\\d{2}$/);",
+									"      ",
+									"      order.products.forEach(product => {",
+									"        pm.expect(product).to.have.property('product_id').that.is.a('string');",
+									"        pm.expect(product).to.have.property('value').that.is.a('number').and.is.at.least(0);",
+									"      });",
+									"    });",
+									"  });",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5050/api/v1/user-orders?order_id=23&start_date=2021-08-06&end_date=2021-12-07",
+							"host": [
+								"localhost"
+							],
+							"port": "5050",
+							"path": [
+								"api",
+								"v1",
+								"user-orders"
+							],
+							"query": [
+								{
+									"key": "order_id",
+									"value": "23"
+								},
+								{
+									"key": "start_date",
+									"value": "2021-08-06"
+								},
+								{
+									"key": "end_date",
+									"value": "2021-12-07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read File and Save",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Pichau/Downloads/data_1.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5050/api/v1/user-orders/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "5050",
+							"path": [
+								"api",
+								"v1",
+								"user-orders",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5050/api/v1/health",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
