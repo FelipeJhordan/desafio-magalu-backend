@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-@Schema()
+@Schema({
+  collection: 'file-hash',
+})
 export class FileHashEntity {
   @Prop()
   hash: string;
