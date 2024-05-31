@@ -13,8 +13,9 @@
       - [Passos](#passos-1)
   - [Testes](#testes)
     - [Cobertura de testes unitários](#cobertura-de-testes-unitários)
-  - [Definições Técnicas](#definições-técnicas)
   - [Postman](#postman)
+  - [Definições Técnicas](#definições-técnicas)
+
 ## Descrição
 Esse projeto foi criado com o intuito de implementar a API proposta no <a href="https://github.com/misaku/Desafio-Full-Stack/blob/main/BACK-END.md" >repositório</a>.
 ## Objetivo
@@ -98,9 +99,12 @@ npm run start:dev
 ### Cobertura de testes unitários
 ![coverage](https://github.com/FelipeJhordan/desafio-magalu-backend/assets/44248690/f0b6a892-4db2-43a5-a925-098530c97b32)
 
-## Definições Técnicas
 
 ## Postman
 Foi criado uma collection postman com exemplo de algumas chamadas.
 Link: https://github.com/FelipeJhordan/desafio-magalu-backend/blob/main/doc/Magalu.postman_collection.json
 
+
+
+## Definições Técnicas
+As definições técnicas, tecnologias utilizadas podem ser encontradas no <a href="https://github.com/FelipeJhordan/desafio-magalu-backend/blob/main/doc/TECHNICAL_DETAILS.md">TECHNICAL_DETAILS</a>
