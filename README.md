@@ -1,73 +1,79 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Desafio Magalu Backend
+## Descrição
+Esse projeto foi criado com o intuito de implementar a API proposta no <a href="https://github.com/misaku/Desafio-Full-Stack/blob/main/BACK-END.md" >repositório</a>.
+## Objetivo
+Faça um sistema que receba um arquivo via API REST e processe-o para ser retornado via API REST.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Links
+O projeto está hospedado na Northflank, e também foi contruído um site web que está sendo hospedado na Vercel.
+- Back-end: https://p01--backend--7qb49cjkg5gj.code.run/api/v1/docs
+- Front-end:  https://desafio-magalu-frontend.vercel.app/
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Como Executar
+###  Alternativa #1 - Node + Mongo
+### Requisitos
+- Node (20.x ou superior)
+- Mongo ou instância mongo
 
-## Installation
-
-```bash
-$ npm install
+### Passos
+Clonar este repositório:
+```
+   git clone https://github.com/FelipeJhordan/desafio-magalu-backend.git
+```
+Ir para o diretório:
+```
+  cd desafio-magalu-backend
 ```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+Criar arquivo .env:
+```
+PORT=5050
+APPLICATION_TITLE="OS STATION"
+APPLICATION_VERSION="v1"
+ALLOW_REPEAT_FILE_FLAG=1
+MAX_CHUNK_SIZE=2048
+# DATABASE ENVS
+DATABASE_URI={MONGO_URL}
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+Criar container e executar:
+```
+docker compose build
+docker compose up
 ```
 
-## Support
+###  Alternativa #2 - Docker
+### Requisitos
+- Docker
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Passos
+Clonar este repositório:
+```
+   git clone https://github.com/FelipeJhordan/desafio-magalu-backend.git
+```
+Ir para o diretório:
+```
+  cd desafio-magalu-backend
+```
+Criar arquivo .env
+```
+PORT=5050
+APPLICATION_TITLE="OS STATION"
+APPLICATION_VERSION="v1"
+ALLOW_REPEAT_FILE_FLAG=1
+MAX_CHUNK_SIZE=2048
+# DATABASE ENVS
+DATABASE_URI={MONGO_URL}
+```
+Instalar as dependências:
+```
+npm install // yarn
+```
+Executar a aplicação:
+```
+npm run start:dev
+```
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
