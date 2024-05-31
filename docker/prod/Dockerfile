@@ -1,5 +1,5 @@
 # Initiate a container to build the application in.
-FROM node:14-alpine as builder
+FROM node:18 as builder
 ENV NODE_ENV=build
 WORKDIR /usr/src/app
 
@@ -19,7 +19,7 @@ RUN npm run build
 RUN npm prune --production
 
 # Initiate a new container to run the application in.
-FROM node:14-alpine
+FROM node:18
   ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
